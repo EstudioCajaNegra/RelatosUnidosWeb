@@ -1,5 +1,5 @@
 ---
-import Navigation from "./Navigation.astro"
+import SocialMedia from "../common/SocialMedia.astro"
 import Menu from "./Menu.astro"
 import { Image } from "astro:assets"
 import iconoRelatosUnidos from '../../assets/icon_RU.svg'
@@ -7,9 +7,11 @@ import iconoRelatosUnidos from '../../assets/icon_RU.svg'
 <header class="p-3 flex justify-between items-center border-b">
     <div class="flex items-center space-x-3">
         <Image src={iconoRelatosUnidos} alt="Icono Relatos Unidos" width="40" height="40" />
-        <span class="p-1.75 border">Trueque de Relatos</span>
+        <span class="p-1.75 border font-bigshoulders font-medium">Trueque de Relatos</span>
     </div>
     <nav>
+        <!-- Queda pendiente construir área de redes sociales -->
+        <SocialMedia platform="instagram" username="estudio_cajanegra"/>
         <Menu />
     </nav>
 </header>

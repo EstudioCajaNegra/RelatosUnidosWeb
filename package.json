@@ -18,6 +18,8 @@
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
-    "@iconify-json/material-symbols": "^1.2.79"
+    "@iconify-json/material-symbols": "^1.2.79",
+    "@midudev/tailwind-animations": "^1.0.1",
+    "@tailwindcss/typography": "^0.5.20"
   }
 }
