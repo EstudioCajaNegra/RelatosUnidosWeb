@@ -1,8 +1,14 @@
 ---
 import Navigation from "./Navigation.astro"
 import Menu from "./Menu.astro"
+import { Image } from "astro:assets"
+import iconoRelatosUnidos from '../../assets/icon_RU.svg'
 ---
-<header>
+<header class="p-3 flex justify-between items-center border-b">
+    <div class="flex items-center space-x-3">
+        <Image src={iconoRelatosUnidos} alt="Icono Relatos Unidos" width="40" height="40" />
+        <span class="p-1.75 border">Trueque de Relatos</span>
+    </div>
     <nav>
         <Menu />
     </nav>
