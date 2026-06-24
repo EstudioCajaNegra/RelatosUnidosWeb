@@ -18,7 +18,9 @@
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
+    "@iconify-json/logos": "^1.2.11",
     "@iconify-json/material-symbols": "^1.2.79",
+    "@iconify-json/streamline-logos": "^1.2.0",
     "@midudev/tailwind-animations": "^1.0.1",
     "@tailwindcss/typography": "^0.5.20"
   }

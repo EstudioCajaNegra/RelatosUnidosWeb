@@ -1,5 +1,19 @@
 ---
-const { platform, username } = Astro.props;
+import { Icon } from "astro-icon/components";
+
+const { class: className } = Astro.props;
 ---
 
-<a href={`https://www.${platform}.com/${username}`} >{platform}</a>
+<div class={`flex space-x-2 ${className || ""}`}>
+    <a href={`https://www.youtube.com/@estudiocajanegra`} target="_blank">
+        <Icon name="streamline-logos:youtube-clip-logo-solid" class="size-5" />
+    </a>
+
+    <a href={`https://www.instagram.com/estudio_cajanegra`} target="_blank">
+        <Icon name="streamline-logos:instagram-logo-2-solid" class="size-5" />
+    </a>
+
+    <a href={`https://www.tiktok.com/@estudiocajanegra`} target="_blank">
+        <Icon name="streamline-logos:tiktok-logo-solid" class="size-5" />
+    </a>
+</div>
