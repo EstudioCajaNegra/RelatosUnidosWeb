@@ -1,11 +1,11 @@
 ---
-const pageFiles = Object.keys(import.meta.glob('../../pages/**/*.astro'));
+const pages = import.meta.glob('../../pages/**/*.astro', { eager: true });
 
 const { pathname } = Astro.url;
 const currentPath = pathname.replace(/\/$/, '');
 
-const menuItems = pageFiles
-  .map((file) => {
+const menuItems = Object.entries(pages)
+  .map(([file, module]: [string, any]) => {
     const route = file
       .replace(/^([\.\/]+)pages/, '')
       .replace(/\/index\.astro$/, '')
@@ -13,19 +13,13 @@ const menuItems = pageFiles
 
     return {
       route: route === '' ? '/' : route,
-      label:
-        route === ''
-          ? 'Inicio'
-          : route
-              .split('/')
-              .filter(Boolean)
-              .slice(-1)[0]
-              .replace(/-/g, ' ')
-              .replace(/\b\w/g, (char) => char.toUpperCase()),
+      label: module.title || 'Sin título',
+      order: module.order ?? 999,
     };
   })
-  .sort((a, b) => a.route.localeCompare(b.route));
+  .sort((a, b) => a.order - b.order);
 ---
+
 <div id="main-menu" class="nav-links">
   {menuItems.map((item) => (
     <a
