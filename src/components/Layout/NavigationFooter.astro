@@ -1,32 +1,38 @@
 ---
-const pages = import.meta.glob('../../pages/**/*.astro', { eager: true });
+const pages = import.meta.glob("../../pages/**/*.astro", { eager: true });
 
 const { pathname } = Astro.url;
-const currentPath = pathname.replace(/\/$/, '');
+const currentPath = pathname.replace(/\/$/, "");
 
 const menuItems = Object.entries(pages)
   .map(([file, module]: [string, any]) => {
     const route = file
-      .replace(/^([\.\/]+)pages/, '')
-      .replace(/\/index\.astro$/, '')
-      .replace(/\.astro$/, '');
+      .replace(/^([\.\/]+)pages/, "")
+      .replace(/\/index\.astro$/, "")
+      .replace(/\.astro$/, "");
 
     return {
-      route: route === '' ? '/' : route,
-      label: module.title || 'Sin título',
+      route: route === "" ? "/" : route,
+      label: module.title || "Sin título",
       order: module.order ?? 999,
     };
   })
   .sort((a, b) => a.order - b.order);
 ---
 
-<div id="main-menu" class="nav-links">
-  {menuItems.map((item) => (
-    <a
-      href={item.route}
-      class={item.route === currentPath ? 'active' : ''}
-    >
-      {item.label}
-    </a>
-  ))}
+<div id="menu-footer" class="flex flex-col items-end">
+  {
+    menuItems.map((item) => (
+      <a
+        href={item.route}
+        class={
+          item.route === currentPath
+            ? "bg-primary text-white font-bigshoulders font-medium uppercase text-xl py-0.5 px-2"
+            : "text-white font-bigshoulders font-medium uppercase text-xl px-2"
+        }
+      >
+        {item.label}
+      </a>
+    ))
+  }
 </div>
