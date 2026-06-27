@@ -1,0 +1,38 @@
+---
+const pageFiles = Object.keys(import.meta.glob('../../pages/**/*.astro'));
+
+const { pathname } = Astro.url;
+const currentPath = pathname.replace(/\/$/, '');
+
+const menuItems = pageFiles
+  .map((file) => {
+    const route = file
+      .replace(/^([\.\/]+)pages/, '')
+      .replace(/\/index\.astro$/, '')
+      .replace(/\.astro$/, '');
+
+    return {
+      route: route === '' ? '/' : route,
+      label:
+        route === ''
+          ? 'Inicio'
+          : route
+              .split('/')
+              .filter(Boolean)
+              .slice(-1)[0]
+              .replace(/-/g, ' ')
+              .replace(/\b\w/g, (char) => char.toUpperCase()),
+    };
+  })
+  .sort((a, b) => a.route.localeCompare(b.route));
+---
+<div id="main-menu" class="nav-links">
+  {menuItems.map((item) => (
+    <a
+      href={item.route}
+      class={item.route === currentPath ? 'active' : ''}
+    >
+      {item.label}
+    </a>
+  ))}
+</div>
