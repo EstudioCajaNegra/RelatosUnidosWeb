@@ -1,12 +1,125 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
+
+import imgLaboratorio from "../assets/images/img_laboratorio.jpg";
+import imgAgradecimientos from "../assets/images/img_agradecimientos.jpg";
 
 export const title = "El Laboratorio";
 export const order = 2;
-
 ---
 
 <Layout>
-    <h1>{ title }</h1>
-</Layout>
+    <div class="flex flex-col max-w-desktop items-center my-4">
+        <div class="flex flex-col max-w-desktop">
+            <Image
+                src={imgLaboratorio}
+                alt="El Laboratorio"
+                height="600"
+                width="1500"
+                class="object-cover"
+            />
+        </div>
+        <div class="flex flex-col w-2xl mt-20 items-start">
+            <h1>
+                {title}
+            </h1>
+            <p>
+                El <b>Laboratorio Relatos Unidos</b> es un proyecto artístico y comunitario
+                desarrollado por <b>Estudio Caja Negra</b> que visibiliza la lucha
+                del barrio El Rosario (Barrios Unidos) por la defensa de su territorio
+                frente a amenazas de expropiación, desalojo y gentrificación.
+            </p>
+            <p>
+                Ante la reactivación de estas amenazas en 2025, la resistencia
+                se reinventa desde el arte a través de una <b
+                    >producción transmedia que preserva la memoria colectiva y
+                    denuncia las dinámicas que ponen en riesgo la permanencia
+                    del barrio</b
+                >. El proyecto articula una obra de teatro documental, 15
+                crónicas audiovisuales y un sitio web como archivo vivo de
+                memorias e historias barriales.
+            </p>
+            <p>
+                Mediante talleres, encuentros y espacios de creación
+                colaborativa, se construye una <b>narrativa comunitaria</b> que fortalece
+                el tejido social y activa la reflexión sobre las transformaciones
+                del entorno.
+            </p>
+            <p>
+                Relatos Unidos en Escena es una herramienta de resistencia
+                territorial que busca exponer los impactos de la gentrificación,
+                fortalecer la identidad barrial y mantener viva la memoria del
+                territorio. Desde el arte como medio de transformación social,
+                promueve la cohesión entre barrios y la lucha colectiva por el
+                derecho a permanecer.
+            </p>
+            <hr />
+        </div>
+        <div class="flex flex-col w-2xl items-start">
+            <Image
+                src={imgAgradecimientos}
+                alt="El Laboratorio"
+                height="1000"
+                width="1500"
+                class="object-cover mb-8"
+            />
+            <h2>Agradecimientos</h2>
+            <p>
+                Este proyecto ha sido posible gracias a la participación de
+                habitantes del barrio El Rosario, líderes comunitarios, artistas
+                y profesionales que compartieron sus saberes, historias y
+                trabajo creativo durante todo el proceso. Reconocemos
+                especialmente el compromiso de quienes abrieron sus puertas y
+                confiaron en este laboratorio como espacio de encuentro y
+                resistencia territorial.
+            </p>
+            <p>
+                Gracias a la participación activa y constante de habitantes del
+                barrio El Rosario que estuvieron presentes en todas las etapas
+                del proceso: <b
+                    >Flor Sanabria, Blanca Suárez, Dagoberto Villamil, María
+                    Concepción Cortés, Juan Manuel Cortés, Alejandra Hamón,
+                    Leydy Patarroyo, Natalia Molina, Samuel Méndez y Esteban
+                    Méndez.</b
+                >
+            </p>
 
+            <p>
+                Agradecemos profundamente a quienes compartieron sus historias
+                personales para las crónicas audiovisuales: <b
+                    >Jonny Ricaurte, Mercy Padilla, la familia Merchán y Jorge
+                    Montenegro</b
+                >.
+            </p>
+            <p>
+                Y al acompañamiento reflexivo del <b>sociólogo Fabio González</b
+                >, quien aportó una mirada crítica y contextual al proceso.
+            </p>
+            <hr />
+        </div>
+        <div class="flex flex-col w-2xl items-start mb-20">
+            <h2>Ficha Técnica</h2>
+            <ul>
+                <li><b>Dirección General | Dramaturgia:</b> Johana Valentina Mendez Hamón</li>
+                <li><b>Producción Técnica:</b> Fabián Andrés González Rodríguez</li>
+                <li><b>Actor | Creador de contenido:</b> Miyer Jimenez</li>
+                <li><b>Realización de maqueta:</b> Natalia Molina</li>
+                <li>
+                    <b>Galería Fotográfica:</b> “Retratos de El Rosario en el corazón
+                    de Bogotá” (2025). Santiago Merchán.
+                </li>
+                <li>
+                    <b>Edición audiovisual:</b> Francy Bello (Crónicas Audiovisuales y
+                    Video Podcast)
+                </li>
+                <li>
+                    <b>Camarógrafo:</b> Raúl Chaparro (Crónicas Audiovisuales y Video
+                    Podcast)
+                </li>
+                
+            </ul>
+            <p class="mt-4"><b>Estudio Caja Negra - Todos los derechos reservados 2026 &copy;</b></p>
+        </div>
+    </div>
+</Layout>

@@ -18,3 +18,37 @@
         max-width: var(--max-w-desktop);
     }
 }
+
+h1, h2 {
+    @apply font-bigshoulders font-bold;
+}
+
+h1 {
+    @apply text-5xl uppercase mb-8;
+}
+
+h2 {
+    @apply text-3xl mb-6;
+}
+
+p {
+    @apply text-base text-gray-700 leading-relaxed mb-6;
+}
+
+hr {
+    @apply h-0.5 my-15 text-gray-700 w-full;
+}
+
+ul li{
+    @apply my-1 text-gray-700
+}
+
+/* Footer */
+
+footer h1{
+    @apply text-white bg-primary font-bigshoulders text-5xl uppercase font-semibold pb-1.5 px-3 pt-0 m-0;
+}
+
+footer h2{
+    @apply bg-white font-bigshoulders text-[1.22rem] px-1.5 font-medium mt-2 mb-4;
+}
