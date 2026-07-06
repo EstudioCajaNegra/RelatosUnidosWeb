@@ -8,6 +8,7 @@
     --max-w-desktop: 1140px;
 
     --color-primary: #ff1773;
+    --color-primary-hover: #FF4D94;
 
     /* Fonts */
     --font-bigshoulders: "Big Shoulders", sans-serif;
@@ -51,4 +52,14 @@ footer h1{
 
 footer h2{
     @apply bg-white font-bigshoulders text-[1.22rem] px-1.5 font-medium mt-2 mb-4;
+}
+
+/* Video Card */
+
+.video-card h1{
+    @apply text-3xl m-0
+}
+
+.video-card p{
+    @apply text-sm leading-normal line-clamp-3 m-0
 }

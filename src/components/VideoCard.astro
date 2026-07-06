@@ -1,0 +1,103 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+import imageVideoDefault from "../assets/icono-relatos-unidos.png";
+---
+
+<div class="video-card w-full border rounded-lg">
+    <div class="h-72 w-full overflow-hidden">
+        <Image
+            src={imageVideoDefault}
+            alt="imageVideoDefaul"
+            class="h-full w-full object-cover rounded-t-md"
+        />
+    </div>
+    <div class="p-5">
+        <div>
+            <h1>Titulo video</h1>
+        </div>
+        <div class="mt-1">
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Necessitatibus consequatur soluta vero velit porro perferendis
+                aliquam! Error adipisci cumque aperiam dicta nulla sint alias,
+                fugiat iste quis voluptas numquam assumenda?
+            </p>
+        </div>
+        <div class="flex gap-1.5 mt-2">
+
+            <!-- Icono Copiar Enlace -->
+            <a
+                href="#"
+                target="_blank"
+                aria-label="Copiar Enlace"
+                title="Copiar Enlace"
+                class="bg-gray-500 p-2 size-8 flex items-center justify-center rounded-full hover:bg-gray-400 transition xs:size-16"
+            >
+                <Icon
+                    name="material-symbols:link-2"
+                    class="size-8 text-white"
+                />
+            </a>
+
+            <!-- Botón Ver Video -->
+
+            <a
+                href="#"
+                target="_blank"
+                aria-label="Copiar Enlace"
+                title="Copiar Enlace"
+                class="bg-primary text-white p-0.5 px-3 flex items-center justify-center rounded-full hover:bg-primary-hover transition xs:size-16 gap-1"
+            >
+                Ver video
+                <Icon
+                    name="material-symbols:arrow-forward"
+                    class="size-5 text-white"
+                />
+            </a>
+
+            <!-- Icono Youtube -->
+            <!--
+            <a
+                href={``}
+                target="_blank"
+                class="bg-gray-500 p-2 size-8 flex items-center justify-center rounded-full hover:scale-105 transition-transform xs:size-16"
+            >
+                <Icon
+                    name="streamline-logos:youtube-clip-logo-solid"
+                    class="text-white size-8"
+                />
+            </a>
+             -->
+
+            <!-- Icono Instagram -->
+            <!--
+            <a
+                href={``}
+                target="_blank"
+                class="bg-gray-500 p-2 size-8 flex items-center justify-center rounded-full hover:scale-105 transition-transform xs:size-16"
+            >
+                <Icon
+                    name="streamline-logos:instagram-logo-2-solid"
+                    class="text-white size-8"
+                />
+            </a>
+
+            -->
+            <!-- Icono TikTok -->
+            <!-- 
+            <a
+                href={``}
+                target="_blank"
+                class="bg-gray-500 p-2 size-8 flex items-center justify-center rounded-full hover:scale-105 transition-transform xs:size-16"
+            >
+                <Icon
+                    name="streamline-logos:tiktok-logo-solid"
+                    class="text-white size-8"
+                />
+            </a>
+            -->
+        </div>
+    </div>
+</div>

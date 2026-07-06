@@ -1,4 +1,17 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import VideoCard from "../components/VideoCard.astro";
+
 export const title = "Las Crónicas";
 export const order = 3;
 ---
+
+<Layout>
+  <div class="mx-auto my-4 flex w-full max-w-desktop flex-col items-center px-4">
+    <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-3">
+        <VideoCard />
+        <VideoCard />
+        <VideoCard />
+    </div>
+  </div>
+</Layout>
