@@ -57,7 +57,7 @@ footer h2{
 /* Video Card */
 
 .video-card h1{
-    @apply text-3xl m-0
+    @apply text-xl m-0
 }
 
 .video-card p{

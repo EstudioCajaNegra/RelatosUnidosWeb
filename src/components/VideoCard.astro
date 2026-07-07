@@ -1,21 +1,108 @@
 ---
-import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 
 import imageVideoDefault from "../assets/icono-relatos-unidos.png";
+
+interface Props {
+    videoUrl?: string;
+}
+
+const { videoUrl } = Astro.props as Props;
+
+let videoData: {
+    title?: string;
+    author_name?: string;
+    thumbnail_url?: string;
+} | null = null;
+
+if (videoUrl) {
+    try {
+        const oembedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(videoUrl)}&format=json`;
+        const res = await fetch(oembedUrl);
+        if (res.ok) {
+            videoData = await res.json();
+        }
+        //console.log(videoData)
+    } catch (e) {
+        videoData = null;
+        console.error(e);
+    }
+}
+
+/// Vamos a hacer un cambio. Los videos van a ser tratados a través de .md para luego incorporarlos aquí y obtener más información para el popup
 ---
 
 <div class="video-card w-full border rounded-lg">
-    <div class="h-72 w-full overflow-hidden">
-        <Image
-            src={imageVideoDefault}
-            alt="imageVideoDefaul"
-            class="h-full w-full object-cover rounded-t-md"
+    <div class="h-52 w-full overflow-hidden relative group">
+        <img
+            src={videoData?.thumbnail_url ?? imageVideoDefault}
+            alt={videoData?.title ?? "imageVideoDefault"}
+            class="h-full w-full object-cover rounded-t-md transition duration-200 ease-in-out"
         />
+        <div
+            class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition duration-200 ease-in-out rounded-t-md pointer-events-none"
+        >
+        </div>
     </div>
     <div class="p-5">
-        <div>
-            <h1>Titulo video</h1>
+        <div class="flex justify-between">
+            <h1>{videoData?.title ?? "Titulo video"}</h1>
+            <div class="relative inline-block text-left">
+                <button
+                    type="button"
+                    data-menu-button
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="flex items-center justify-end xs:size-16"
+                >
+                    <Icon
+                        name="material-symbols:more-vert"
+                        class="size-8 text-black hover:text-gray-600 transition cursor-pointer"
+                    />
+                </button>
+                <div
+                    data-dropdown-menu
+                    class="hidden absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    role="menu"
+                    aria-orientation="vertical"
+                >
+                    <div class="py-1" role="none">
+                        <a
+                            href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            role="menuitem"
+                        >
+                            <Icon
+                                name="streamline-logos:youtube-clip-logo-solid"
+                                class="inline size-4 mr-2 text-black hover:text-gray-600 transition cursor-pointer"
+                            />
+                            Ver en YouTube
+                        </a>
+                        <a
+                            href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            role="menuitem"
+                        >
+                            <Icon
+                                name="streamline-logos:instagram-logo-2-solid"
+                                class="inline size-4 mr-2 text-black hover:text-gray-600 transition cursor-pointer"
+                            />
+                            Ver en Instagram
+                        </a>
+                        <a
+                            href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            role="menuitem"
+                        >
+                            <Icon
+                                name="streamline-logos:tiktok-logo-solid"
+                                class="inline size-4 mr-2 text-black hover:text-gray-600 transition cursor-pointer"
+                            />
+                            Ver en TikTok
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="mt-1">
             <p>
@@ -26,7 +113,6 @@ import imageVideoDefault from "../assets/icono-relatos-unidos.png";
             </p>
         </div>
         <div class="flex gap-1.5 mt-2">
-
             <!-- Icono Copiar Enlace -->
             <a
                 href="#"
@@ -35,19 +121,16 @@ import imageVideoDefault from "../assets/icono-relatos-unidos.png";
                 title="Copiar Enlace"
                 class="bg-gray-500 p-2 size-8 flex items-center justify-center rounded-full hover:bg-gray-400 transition xs:size-16"
             >
-                <Icon
-                    name="material-symbols:link-2"
-                    class="size-8 text-white"
-                />
+                <Icon name="material-symbols:share" class="size-8 text-white" />
             </a>
 
             <!-- Botón Ver Video -->
 
             <a
-                href="#"
+                href={videoUrl ?? "#"}
                 target="_blank"
-                aria-label="Copiar Enlace"
-                title="Copiar Enlace"
+                aria-label="Ver video"
+                title="Ver video"
                 class="bg-primary text-white p-0.5 px-3 flex items-center justify-center rounded-full hover:bg-primary-hover transition xs:size-16 gap-1"
             >
                 Ver video
@@ -56,48 +139,40 @@ import imageVideoDefault from "../assets/icono-relatos-unidos.png";
                     class="size-5 text-white"
                 />
             </a>
-
-            <!-- Icono Youtube -->
-            <!--
-            <a
-                href={``}
-                target="_blank"
-                class="bg-gray-500 p-2 size-8 flex items-center justify-center rounded-full hover:scale-105 transition-transform xs:size-16"
-            >
-                <Icon
-                    name="streamline-logos:youtube-clip-logo-solid"
-                    class="text-white size-8"
-                />
-            </a>
-             -->
-
-            <!-- Icono Instagram -->
-            <!--
-            <a
-                href={``}
-                target="_blank"
-                class="bg-gray-500 p-2 size-8 flex items-center justify-center rounded-full hover:scale-105 transition-transform xs:size-16"
-            >
-                <Icon
-                    name="streamline-logos:instagram-logo-2-solid"
-                    class="text-white size-8"
-                />
-            </a>
-
-            -->
-            <!-- Icono TikTok -->
-            <!-- 
-            <a
-                href={``}
-                target="_blank"
-                class="bg-gray-500 p-2 size-8 flex items-center justify-center rounded-full hover:scale-105 transition-transform xs:size-16"
-            >
-                <Icon
-                    name="streamline-logos:tiktok-logo-solid"
-                    class="text-white size-8"
-                />
-            </a>
-            -->
         </div>
     </div>
 </div>
+
+<script>
+    const buttons = document.querySelectorAll("[data-menu-button]");
+
+    buttons.forEach((button) => {
+        const container = button.closest(".relative.inline-block.text-left");
+        const menu = container?.querySelector("[data-dropdown-menu]");
+
+        if (!menu) return;
+
+        button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const isHidden = menu.classList.toggle("hidden");
+            button.setAttribute("aria-expanded", (!isHidden).toString());
+        });
+    });
+
+    document.addEventListener("click", (event) => {
+        const target = event.target;
+
+        document.querySelectorAll("[data-menu-button]").forEach((button) => {
+            const container = button.closest(
+                ".relative.inline-block.text-left",
+            );
+            const menu = container?.querySelector("[data-dropdown-menu]");
+
+            if (!menu) return;
+            if (!menu.contains(target) && !button.contains(target)) {
+                menu.classList.add("hidden");
+                button.setAttribute("aria-expanded", "false");
+            }
+        });
+    });
+</script>
