@@ -4,10 +4,16 @@ import { Icon } from "astro-icon/components";
 import imageVideoDefault from "../assets/icono-relatos-unidos.png";
 
 interface Props {
-    videoUrl?: string;
+    title?: string;
+    numCap?: string;
+    description?: string;
+    videoUrl: string;
+    instagram?: string;
+    tiktok?: string;
 }
 
-const { videoUrl } = Astro.props as Props;
+const { title, numCap, description, videoUrl, instagram, tiktok } =
+    Astro.props as Props;
 
 let videoData: {
     title?: string;
@@ -31,11 +37,12 @@ if (videoUrl) {
 
 /// Vamos a hacer un cambio. Los videos van a ser tratados a través de .md para luego incorporarlos aquí y obtener más información para el popup
 ---
+{ videoUrl !== undefined && videoUrl !== '#' && (
 
 <div class="video-card w-full border rounded-lg">
     <div class="h-52 w-full overflow-hidden relative group">
         <img
-            src={videoData?.thumbnail_url ?? imageVideoDefault}
+            src={videoData?.thumbnail_url ?? imageVideoDefault.src}
             alt={videoData?.title ?? "imageVideoDefault"}
             class="h-full w-full object-cover rounded-t-md transition duration-200 ease-in-out"
         />
@@ -44,9 +51,13 @@ if (videoUrl) {
         >
         </div>
     </div>
-    <div class="p-5">
-        <div class="flex justify-between">
-            <h1>{videoData?.title ?? "Titulo video"}</h1>
+    <div class="p-5 flex flex-col justify-between">
+        <div class="flex flex-col h-30">
+            <div class="flex justify-between">
+                <div>
+                    <h2>{numCap}</h2>
+                    <h1>{title ?? "Titulo video"}</h1>
+                </div>
             <div class="relative inline-block text-left">
                 <button
                     type="button"
@@ -68,9 +79,10 @@ if (videoUrl) {
                 >
                     <div class="py-1" role="none">
                         <a
-                            href="#"
+                            href={videoUrl}
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                             role="menuitem"
+                            target="_blank"
                         >
                             <Icon
                                 name="streamline-logos:youtube-clip-logo-solid"
@@ -78,39 +90,45 @@ if (videoUrl) {
                             />
                             Ver en YouTube
                         </a>
-                        <a
-                            href="#"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                            role="menuitem"
-                        >
-                            <Icon
-                                name="streamline-logos:instagram-logo-2-solid"
-                                class="inline size-4 mr-2 text-black hover:text-gray-600 transition cursor-pointer"
-                            />
-                            Ver en Instagram
-                        </a>
-                        <a
-                            href="#"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                            role="menuitem"
-                        >
-                            <Icon
-                                name="streamline-logos:tiktok-logo-solid"
-                                class="inline size-4 mr-2 text-black hover:text-gray-600 transition cursor-pointer"
-                            />
-                            Ver en TikTok
-                        </a>
+                        {
+                            instagram !== "#" && instagram !== undefined && (
+                                <a
+                                    href={instagram}
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    role="menuitem"
+                                    target="_blank"
+                                >
+                                    <Icon
+                                        name="streamline-logos:instagram-logo-2-solid"
+                                        class="inline size-4 mr-2 text-black hover:text-gray-600 transition cursor-pointer"
+                                    />
+                                    Ver en Instagram
+                                </a>
+                            )
+                        }
+                        {
+                            tiktok !== "#" && tiktok !== undefined && (
+                                <a
+                                    href={tiktok}
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    role="menuitem"
+                                    target="_blank"
+                                >
+                                    <Icon
+                                        name="streamline-logos:tiktok-logo-solid"
+                                        class="inline size-4 mr-2 text-black hover:text-gray-600 transition cursor-pointer"
+                                    />
+                                    Ver en TikTok
+                                </a>
+                            )
+                        }
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
         <div class="mt-1">
-            <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Necessitatibus consequatur soluta vero velit porro perferendis
-                aliquam! Error adipisci cumque aperiam dicta nulla sint alias,
-                fugiat iste quis voluptas numquam assumenda?
-            </p>
+            <p>{description}</p>
+        </div>
         </div>
         <div class="flex gap-1.5 mt-2">
             <!-- Icono Copiar Enlace -->
@@ -176,3 +194,5 @@ if (videoUrl) {
         });
     });
 </script>
+
+)}

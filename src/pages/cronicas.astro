@@ -4,12 +4,29 @@ import VideoCard from "../components/VideoCard.astro";
 
 export const title = "Las Crónicas";
 export const order = 3;
+
+const allPosts = Object.values(
+  import.meta.glob("./posts/cronicas-post/*.md", { eager: true }),
+);
 ---
 
 <Layout>
-  <div class="mx-auto my-4 flex w-full max-w-desktop flex-col items-center px-4">
-    <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-3">
-        <VideoCard videoUrl="https://www.youtube.com/watch?v=BNH-fjaoASU" />
+  <div
+    class="mx-auto my-4 flex w-full max-w-desktop flex-col items-center px-4"
+  >
+    <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-3 fit">
+      {
+        allPosts.map((post: any) => (
+          <VideoCard
+            title={post.frontmatter.title}
+            numCap={post.frontmatter.numCap}
+            description={post.frontmatter.description}
+            videoUrl={post.frontmatter.youtube}
+            instagram={post.frontmatter.instagram}
+            tiktok={post.frontmatter.tiktok}
+          />
+        ))
+      }
     </div>
   </div>
 </Layout>

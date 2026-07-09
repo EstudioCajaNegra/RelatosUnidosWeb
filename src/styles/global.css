@@ -60,6 +60,10 @@ footer h2{
     @apply text-xl m-0
 }
 
+.video-card h2{
+    @apply text-sm m-0
+}
+
 .video-card p{
     @apply text-sm leading-normal line-clamp-3 m-0
 }
